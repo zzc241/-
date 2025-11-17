@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 spring:
  application:
     name: ruiji
@@ -14,14 +13,25 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
-        
-
+ data:
+  redis:
+   host: 192.168.164.182
+   port: 6379
+   password: 123456
+   database: 0
+   lettuce:
+    pool:
+     max-active: 8        # 保持不变，但确保使用的是正确版本
+     max-wait: 1ms
+     max-idle: 4
+     min-idle: 0
 
 mybatis:
  configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 
-
+# 添加此行导入自定义配置
+spring.config.import: optional:ruiji
 ruiji:
   path: D:/internet-of-t/JAVA_Web/stage6/ruiji/src/main/resources/img/
