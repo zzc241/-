@@ -25,8 +25,8 @@ public class LoginCheckFilter implements Filter {
             "/backend/**",
             "/front/**",
             "/common/**",
-            "/front/**",
-            "/**",
+            "/user/sendMsg",
+            "/user/login"
     };
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { 
@@ -49,6 +49,16 @@ public class LoginCheckFilter implements Filter {
             //设置当前线程的id
             Long empId = (long) request.getSession().getAttribute("employee");
             BaseContext.setCurrentId(empId);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
+        if(request.getSession().getAttribute("user") != null){
+            // log.info("用户已登录，用户id为：{}", request.getSession().getAttribute("employee"));
+            //设置当前线程的id
+            Long userId = (long) request.getSession().getAttribute("user");
+            BaseContext.setCurrentId(userId);
             filterChain.doFilter(request, response);
             return;
         }

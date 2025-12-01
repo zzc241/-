@@ -28,6 +28,26 @@ spring:
  cache:
   redis:
    time-to-live: 600000
+ mail:
+    host: smtp.qq.com
+    port: 587  # 或 465（SSL）
+    username: 2714156899@qq.com  # 你的QQ邮箱
+    password: "ycznndddlbmwdhac"  # 授权码，不是QQ密码
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: false  # 如果使用465端口
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
 
 mybatis:
  configuration:
